@@ -1,0 +1,16 @@
+adam,kitchen,blender,30
+betty,kitchen,toaster,20
+adam,living room,lamp,5
+adam,garage,winter tires,210
+betty,bedroom,dresser,200
+carl,bedroom,bed,75
+don,bedroom,bed,65
+earl,bedroom,bed,55
+fred,bedroom,bed,85
+grace,bedroom,bed,95
+holly,bedroom,bed,105
+isabell,bedroom,bed,115
+john,bedroom,bed,75
+lily,bedroom,bed,75
+mark,bedroom,bed,75
+nancy,bedroom,bed,75
