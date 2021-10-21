@@ -14,7 +14,7 @@
     <body>
         <h1>Home Inventory</h1>
         <h2>Login</h2>
-        <form>
+        <form method="POST">
             <label>Username:</label>
             <!--input for username-->
             <input type="text" name="username" value="${username}">
@@ -28,6 +28,6 @@
         </form>
 
         <!--output box for info/error messages-->
-        <h2>${message}</h2>
+        <p>${message}</p>
     </body>
 </html>

@@ -14,7 +14,7 @@
     <body>
         <h1>Home Inventory for ${username}</h1>
         <h2>Add Item</h2>
-        <form>
+        <form method="POST">
             <label>Category:</label>
             <!--input for category-->
             <select name="category" id="category">
@@ -32,8 +32,15 @@
             <!--input for price-->
             <input type="text" name="price">
             <br>
+            <br>
             <!--submit button to login-->
-            <input type="submit" value="Add">               
+            <input type="submit" value="Add">   
+            <p>${error}</p>
         </form>
+        <p>${message}</p>
+        
+        <p>Total value in inventory: ${totalPrice}</p>
+        
+         <a href="login?logout">Log out</a> 
     </body>
 </html>

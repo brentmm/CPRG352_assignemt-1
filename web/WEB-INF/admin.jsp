@@ -9,9 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Home Inventory: Admin</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Home Inventory</h1>
+        <h2>Admin Summary</h2>
+        
+        <p>Total value for all users: ${totalValue}</p>
+        
+        <a href="login?logout">Log out</a> 
+        
     </body>
 </html>
