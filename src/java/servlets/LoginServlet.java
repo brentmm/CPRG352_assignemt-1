@@ -1,9 +1,10 @@
 package servlets;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,12 +65,12 @@ public class LoginServlet extends HttpServlet {
         //Read in users
         String path = getServletContext().getRealPath("/WEB-INF/users.txt");
 
-        File file1 = new File(path);
+        BufferedReader br = new BufferedReader(new FileReader(new File(path)));
 
-        Scanner userReader = new Scanner(file1);
+        String temp;
 
-        while (userReader.hasNext()) {
-            String temp = userReader.nextLine();
+        while ((temp = br.readLine()) != null) {
+            System.out.println(temp);
             String[] sections = temp.split(",");
 
             User user = new User(sections[0], sections[1]);
@@ -77,7 +78,7 @@ public class LoginServlet extends HttpServlet {
             userData.add(user);
         }
 
-        userReader.close();
+        br.close();
 
         //validate login
         for (int n = 0; n < userData.size(); n++) {
@@ -113,24 +114,8 @@ public class LoginServlet extends HttpServlet {
         getServletContext()
         .getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         //after reload stop rest of execution
-
         return;
 
     }
 
 }
-
-//        BufferedReader br = new BufferedReader(new FileReader(new File(path)));
-//
-//        for (String line = br.readLine(); line != null; line = br.readLine()) {
-//            String temp = br.readLine();
-//            String[] sections = temp.split(",");
-//
-//            User user = new User(sections[0], sections[1]);
-//
-//            userData.add(user);
-//
-//        }
-//
-//        br.close();
-

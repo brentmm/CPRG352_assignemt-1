@@ -21,7 +21,7 @@
             <br>
             <label>Password:</label>
             <!--input for password-->
-            <input type="text" name="password" value="${password}">
+            <input type="password" name="password" value="${password}">
             <br>
             <!--submit button to login-->
             <input type="submit" value="Submit">               
