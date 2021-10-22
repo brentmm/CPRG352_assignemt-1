@@ -22,6 +22,8 @@ public class AdminServlet extends HttpServlet {
             return;
         }
         
+        //read in total cost
+        
         getServletContext().getRequestDispatcher("/WEB-INF/admin.jsp").forward(request, response); //loads login page
         return;        
     }

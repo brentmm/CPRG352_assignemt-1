@@ -1,18 +1,22 @@
 package servlets;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.User;
 
 public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException { 
-        
+    throws ServletException, IOException {
+
         HttpSession session = request.getSession(); //getting session
 
         String s_username = (String) session.getAttribute("sessionUser"); //grabing session variable
@@ -44,7 +48,10 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username"); //fills login page input boxes
         String password = request.getParameter("password");
 
-        if (username == null || username.equals("") && password == null || password.equals("")) { //checking user entered username and pass
+        request.setAttribute("username", username);//setting values of textboxes
+        request.setAttribute("password", password);
+
+        if (username == null || username.equals("") || password == null || password.equals("")) { //checking user entered username and pass
             request.setAttribute("message", "Please enter your username and password");
             //display form again
             getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
@@ -52,28 +59,78 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        request.setAttribute("username", username);//setting values of textboxes
-        request.setAttribute("password", password);
-        
-//        AccountService userlogin = new AccountService(); //creating instance of AccountService
-//        User loginInfo = userlogin.login(username, password); //calling login method to valid login info
+        ArrayList<User> userData = new ArrayList<>();
 
-//        if (loginInfo == null) { //Checking if login info was correct
-//            request.setAttribute("message", "Invalid login info");
-//            //display form again
-//            getServletContext().getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-//            //after reload stop rest of execution
-//            return;
-//        }
-        
-        HttpSession session = request.getSession(); //getting session
+        //Read in users
+        String path = getServletContext().getRealPath("/WEB-INF/users.txt");
 
-        session.setAttribute("sessionUser", username); //setting session variable to username
+        File file1 = new File(path);
 
-        
-        response.sendRedirect("inventory"); //redirecting to home page
+        Scanner userReader = new Scanner(file1);
+
+        while (userReader.hasNext()) {
+            String temp = userReader.nextLine();
+            String[] sections = temp.split(",");
+
+            User user = new User(sections[0], sections[1]);
+
+            userData.add(user);
+        }
+
+        userReader.close();
+
+        //validate login
+        for (int n = 0; n < userData.size(); n++) {
+            if (userData.get(n).getUsername().equals(username) && username.equals("admin") && userData.get(n).getPassword().equals(password)) {
+                HttpSession session = request.getSession(); //getting session
+
+                session.setAttribute("sessionUser", username); //setting session variable to username
+                session.setAttribute("sessionPass", password);
+
+                response.sendRedirect("admin"); //redirecting to home page
+                return;
+
+            } else if (userData.get(n).getUsername().equals(username) && userData.get(n).getPassword().equals(password)) {
+
+                System.out.println("Username:");
+                System.out.println(userData.get(n).getUsername());
+
+                HttpSession session = request.getSession(); //getting session
+
+                session.setAttribute("sessionUser", username); //setting session variable to username
+                session.setAttribute("sessionPass", password);
+
+                response.sendRedirect("inventory"); //redirecting to home page
+                return;
+
+            }
+
+        }
+
+        request.setAttribute(
+        "message", "Invalid login info");
+        //display form again
+        getServletContext()
+        .getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        //after reload stop rest of execution
+
         return;
 
     }
 
 }
+
+//        BufferedReader br = new BufferedReader(new FileReader(new File(path)));
+//
+//        for (String line = br.readLine(); line != null; line = br.readLine()) {
+//            String temp = br.readLine();
+//            String[] sections = temp.split(",");
+//
+//            User user = new User(sections[0], sections[1]);
+//
+//            userData.add(user);
+//
+//        }
+//
+//        br.close();
+

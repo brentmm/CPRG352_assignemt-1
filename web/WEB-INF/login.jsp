@@ -24,7 +24,7 @@
             <input type="text" name="password" value="${password}">
             <br>
             <!--submit button to login-->
-            <input type="submit" value="Login">               
+            <input type="submit" value="Submit">               
         </form>
 
         <!--output box for info/error messages-->

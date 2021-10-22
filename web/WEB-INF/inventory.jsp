@@ -17,7 +17,7 @@
         <form method="POST">
             <label>Category:</label>
             <!--input for category-->
-            <select name="category" id="category">
+            <select name="category">
                 <option value="bedroom">Bedroom</option>
                 <option value="kitchen">Kitchen</option>
                 <option value="living room">Living Room</option>
@@ -26,20 +26,20 @@
             <br>
             <label>Item Name:</label>
             <!--input for item-->
-            <input type="text" name="item">
+            <input type="text" name="item" value="${item}">
             <br>
             <label>Price:</label>
             <!--input for price-->
-            <input type="text" name="price">
+            <input type="text" name="price" value="${price}"> 
             <br>
             <br>
             <!--submit button to login-->
-            <input type="submit" value="Add">   
-            <p>${error}</p>
+            <input type="submit" value="Add"> 
+            ${error}
         </form>
         <p>${message}</p>
         
-        <p>Total value in inventory: ${totalPrice}</p>
+        <p>Total value in inventory: $${totalPrice}</p>
         
          <a href="login?logout">Log out</a> 
     </body>
