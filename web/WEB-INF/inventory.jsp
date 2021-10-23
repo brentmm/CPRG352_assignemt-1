@@ -26,11 +26,11 @@
             <br>
             <label>Item Name:</label>
             <!--input for item-->
-            <input type="text" name="item" value="${item}">
+            <input type="text" name="item" value="${userItem}">
             <br>
             <label>Price:</label>
             <!--input for price-->
-            <input type="text" name="price" value="${price}"> 
+            <input type="text" name="price" value="${userPrice}"> 
             <br>
             <br>
             <!--submit button to login-->
@@ -38,9 +38,9 @@
             ${error}
         </form>
         <p>${message}</p>
-        
-        <p>Total value in inventory: $${totalPrice}</p>
-        
-         <a href="login?logout">Log out</a> 
+
+        <p>Total value in inventory: $${userTotal}</p>
+
+        <a href="login?logout">Log out</a> 
     </body>
 </html>

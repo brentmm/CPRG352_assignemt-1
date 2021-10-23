@@ -5,12 +5,12 @@ public class HomeItem {
     private String user;
     private String item;
     private String location;
-    private int price;
+    private String price;
 
     public HomeItem() {
     }
 
-    public HomeItem(String user, String item, String location, int price) {
+    public HomeItem(String user, String item, String location, String price) {
         this.user = user;
         this.item = item;
         this.location = location;
@@ -41,11 +41,11 @@ public class HomeItem {
         this.location = location;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

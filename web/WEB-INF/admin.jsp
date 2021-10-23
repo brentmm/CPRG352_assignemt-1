@@ -15,7 +15,7 @@
         <h1>Home Inventory</h1>
         <h2>Admin Summary</h2>
         
-        <p>Total value for all users: ${totalValue}</p>
+        <p>Total value for all users: ${adminTotal}</p>
         
         <a href="login?logout">Log out</a> 
         
